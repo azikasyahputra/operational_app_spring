@@ -1,0 +1,61 @@
+<main id="main" class="main" th:fragment="content">
+    <div class="pagetitle">
+        <h1>Klien List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Master Input</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/klien/list}" class="pjax-link">Klien</a></li>
+                <li class="breadcrumb-item active">View</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Klien</h5>
+                        <!-- Klien Form -->
+                        <form th:action="@{/klien/create}" th:object="${klien}" method="POST">
+                            <div class="row mb-3">
+                                <label for="namaClient" class="col-sm-3 col-form-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{namaClient}" id="namaClient" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="alamatClient" class="col-sm-3 col-form-label">Alamat</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{alamatClient}" id="alamatClient" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="kotaClient" class="col-sm-3 col-form-label">Kota</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{kotaClient}" id="kotaClient" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="kodeposClient" class="col-sm-3 col-form-label">Kodepos</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{kodeposClient}" id="kodeposClient" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Back Button -->
+                            <div class="row mb-3 text-end">
+                                <div class="col-sm-12">
+                                    <a href="javascript:history.back()" class="btn btn-danger pjax-link">Back</a>
+                                </div>
+                            </div>
+                        </form><!-- End Biaya Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

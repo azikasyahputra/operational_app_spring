@@ -1,0 +1,245 @@
+<aside id="sidebar" class="sidebar" th:fragment="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link collapsed pjax-link" th:href="@{/}">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#master-input-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-menu-button-wide"></i><span>Master Input</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="master-input-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/user/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>User</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/klien/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Klien</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/pelayaran/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Pelayaran</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/gudang/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Gudang</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/lapangan/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Lapangan</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/kosongan/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Kosongan</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/biaya/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Biaya</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/supir/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Supir</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/jenisdokumen/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Jenis Dokumen</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/status/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Status</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/daftarreferensi/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Daftar Referensi</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Master Input Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#order-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-cart"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="order-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/order/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Semua Order</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/order/list/beluminvoice}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Belum Invoice</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/order/list/sudahinvoice}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Sudah Invoice</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Order Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#invoice-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-card-heading"></i><span>Invoice</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="invoice-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/invoice/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Semua Invoice</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/invoice/list/belumdibayar}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Belum Dibayar</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/invoice/list/sudahdibayar}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Sudah Dibayar</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/invoice/list/belumpengeluaran}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Belum Dibuat Pengeluaran</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/invoice/list/sudahpengeluaran}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Sudah Dibuat Pengeluaran</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Invoice Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed pjax-link" th:href="@{/pengeluaran/list}">
+        <i class="bi bi-currency-dollar"></i>
+        <span>Pengeluaran</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed pjax-link" th:href="@{/kas/list}">
+        <i class="bi bi-journal-text"></i>
+        <span>Buku Kas</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#laporan-piutang-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Laporan Piutang</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="laporan-piutang-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/laporanpiutang/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Piutang</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporanorder/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Order</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporankeseluruhan/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Keseluruhan</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporanrugilaba/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Rugi/Laba</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Laporan Piutang Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#laporan-keuangan-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Laporan Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="laporan-keuangan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/laporanbukubesar/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Buku Besar</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporanneraca/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Neraca</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporanrugilabakeuangan/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Rugi/Laba</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Laporan Keuangan Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#order-trucking-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-truck"></i><span>Order Trucking</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="order-trucking-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/trucking/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Semua Order</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/trucking/list/belumlunas}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Belum Lunas</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/trucking/list/sudahlunas}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Sudah Lunas</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Order Trucking Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#laporan-trucking-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Laporan Trucking</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="laporan-trucking-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a th:href="@{/laporanpiutangtrucking/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Piutang</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporantagihanklien/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Tagihan Klien</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporanrugilabatrucking/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Rugi Laba</span>
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/laporankomisisupir/list}" class="pjax-link">
+            <i class="bi bi-circle"></i><span>Laporan Komisi Supir/Kenek</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Laporan Trucking Nav -->
+
+  </ul>
+</aside><!-- End Sidebar-->

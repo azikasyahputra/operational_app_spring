@@ -1,0 +1,162 @@
+<main id="main" class="main" th:fragment="content">
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section dashboard">
+    <div class="row">
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+          <!-- Laba/Rugi Card -->
+          <div class="col-xxl-6 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Laba/Rugi Order <span>| Hari Ini</span></h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="'Rp ' + ${labaToday}"></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Laba/Rugi Card -->
+          <div class="col-xxl-6 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Laba/Rugi Order <span>| Bulan Ini</span></h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="'Rp ' + ${labaMonth}"></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Laba/Rugi Card -->
+
+          <!-- Order Card -->
+          <div class="col-xxl-3 col-md-3">
+            <div class="card info-card sales-card">
+
+              <div class="card-body">
+                <h5 class="card-title">Total Order <span>| Hari ini</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="${ordersToday}"></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Order Card -->
+          <div class="col-xxl-3 col-md-3">
+            <div class="card info-card sales-card">
+
+              <div class="card-body">
+                <h5 class="card-title">Total Order <span>| Bulan ini</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="${ordersThisMonth}"></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Order Card -->
+
+          <!-- Invoice Card -->
+          <div class="col-xxl-3 col-md-3">
+            <div class="card info-card sales-card">
+
+              <div class="card-body">
+                <h5 class="card-title">Total Invoice <span>| Hari ini</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-card-heading"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="${invoicesToday}"></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Invoice Card -->
+          <div class="col-xxl-3 col-md-3">
+            <div class="card info-card sales-card">
+
+              <div class="card-body">
+                <h5 class="card-title">Total Invoice <span>| Bulan ini</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-card-heading"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="${invoicesThisMonth}"></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Invoice Card -->
+
+          <!-- Biaya Card -->
+          <div class="col-xxl-6 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Biaya <span>| Bulan Ini</span></h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="'Rp ' + ${expenseMonth}"></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Biaya Card -->
+
+          <!-- Pendapatan Card -->
+          <div class="col-xxl-6 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Pendapatan <span>| Bulan Ini</span></h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 th:text="'Rp ' + ${incomeMonth}"></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Pendapatan Card -->
+
+        </div>
+      </div><!-- End Left side columns -->
+    </div>
+  </section>
+</main><!-- End #main -->

@@ -1,0 +1,95 @@
+<main id="main" class="main" th:fragment="content">
+    <div class="pagetitle">
+        <h1>Klien List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Master Input</a></li>
+                <li class="breadcrumb-item active">Klien</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title">Klien</h5>
+                            <!-- Create Button -->
+                            <a th:href="@{/klien/create}" class="btn btn-primary float-end" title="Add Klien">
+                                <i class="bi bi-plus-lg"></i>
+                            </a>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Kota</th>
+                                    <th scope="col">Kodepos</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="klien, iterStat : ${kliensPage.content}">
+                                    <th scope="row" th:text="${iterStat.count + ((currentPage - 1) * pageSize)}">1</th>
+                                    <td th:text="${klien.namaClient}">Test</td>
+                                    <td th:text="${klien.alamatClient}">Admin</td>
+                                    <td th:text="${klien.kotaClient}">Admin</td>
+                                    <td th:text="${klien.kodeposClient}">Admin</td>
+                                    <td>
+                                        <!-- View Button -->
+                                        <a th:href="@{/klien/view/{id}(id=${klien.id})}" class="btn btn-info btn-sm pjax-link" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <!-- Edit Button -->
+                                        <a th:href="@{/klien/edit/{id}(id=${klien.id})}" class="btn btn-warning btn-sm pjax-link" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <!-- Delete Button -->
+                                        <a th:href="@{/klien/delete/{id}(id=${klien.id})}" class="btn btn-danger btn-sm pjax-link" onclick="return confirm('Are you sure you want to delete this klien?');" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with hoverable rows -->
+
+                        <!-- Pagination Controls -->
+                        <nav class="float-end">
+                            <ul class="pagination">
+                                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                                    <a class="page-link pjax-link" th:href="@{/klien/list(page=1, size=${pageSize})}" aria-label="First">
+                                        <span aria-hidden="true">First</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                                    <a class="page-link pjax-link" th:href="@{/klien/list(page=${currentPage - 1}, size=${pageSize})}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:each="i : ${#numbers.sequence(currentPage - 2 > 1 ? currentPage - 2 : 1, currentPage + 1 < totalPages ? currentPage + 1 : totalPages)}"                                    th:classappend="${i == currentPage} ? 'active'">
+                                    <a class="page-link pjax-link" th:href="@{/klien/list(page=${i}, size=${pageSize})}" th:text="${i}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                                    <a class="page-link pjax-link" th:href="@{/klien/list(page=${currentPage + 1}, size=${pageSize})}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                                    <a class="page-link pjax-link" th:href="@{/klien/list(page=${totalPages}, size=${pageSize})}" aria-label="Last">
+                                        <span aria-hidden="true">Last</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->

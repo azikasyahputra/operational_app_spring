@@ -1,0 +1,47 @@
+<main id="main" class="main" th:fragment="content">
+    <div class="pagetitle">
+        <h1>Biaya List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/}" class="pjax-link">Master Input</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/biaya/list}" class="pjax-link">Biaya</a></li>
+                <li class="breadcrumb-item active">View</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Biaya</h5>
+                        <!-- Biaya Form -->
+                        <form th:action="@{/biaya/create}" th:object="${biaya}" method="POST">
+                            <div class="row mb-3">
+                                <label for="namaBiaya" class="col-sm-3 col-form-label">Nama Biaya</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{namaBiaya}" id="namaBiaya" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="kategoriBiaya" class="col-sm-3 col-form-label">Kategori Biaya</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" th:field="*{kategoriBiaya}" id="kategoriBiaya" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Back Button -->
+                            <div class="row mb-3 text-end">
+                                <div class="col-sm-12">
+                                    <a href="javascript:history.back()" class="btn btn-danger pjax-link">Back</a>
+                                </div>
+                            </div>
+                        </form><!-- End Biaya Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
