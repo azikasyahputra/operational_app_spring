@@ -1,1 +1,1 @@
-# operational_app_spring
+# Operational Application with Java Spring Boot
