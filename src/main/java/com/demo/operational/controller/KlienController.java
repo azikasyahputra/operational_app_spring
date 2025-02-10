@@ -1,11 +1,14 @@
 package com.demo.operational.controller;
 
+import com.demo.operational.enums.QueryOperator;
 import com.demo.operational.model.Klien;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/klien")
@@ -38,11 +41,31 @@ public class KlienController extends CrudController<Klien> {
 
     @Override
     protected List<String> getSelectableFields() {
-        return Arrays.asList("id", "namaBiaya", "kategoriBiaya");
+        return Arrays.asList("id", "namaClient", "alamatClient","kotaClient","kodeposClient");
     }
 
     @Override
-    protected List<String> getWhereFields() {
-        return Arrays.asList("namaBiaya", "kategoriBiaya");
+    protected Map<String, QueryOperator> getWhereFields() {
+        Map<String, QueryOperator> fields = new HashMap<>();
+        fields.put("namaClient", QueryOperator.LIKE);
+        fields.put("alamatClient", QueryOperator.LIKE);
+        fields.put("kotaClient", QueryOperator.LIKE);
+        fields.put("kodeposClient", QueryOperator.LIKE);
+        return fields;
     }
+
+    @Override
+    protected List<String> getGroupByFields() {
+        return List.of();
+    }
+
+    @Override
+    protected String getSortField(){
+        return "id";
+    };
+
+    @Override
+    protected boolean isSortAscending(){
+        return false;
+    };
 }

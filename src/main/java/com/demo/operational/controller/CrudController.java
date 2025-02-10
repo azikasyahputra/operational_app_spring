@@ -1,6 +1,8 @@
 package com.demo.operational.controller;
 
+import com.demo.operational.enums.QueryOperator;
 import com.demo.operational.service.CrudService;
+import com.demo.operational.utils.FilterConditionHelper;
 import com.demo.operational.utils.PageHelper;
 import com.demo.operational.validation.CreateGroup;
 import com.demo.operational.validation.UpdateGroup;
@@ -13,10 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class CrudController<T> {
 
@@ -28,21 +27,30 @@ public abstract class CrudController<T> {
     public String index(Model model,
                         @RequestParam(defaultValue = "1") int page,
                         @RequestParam(defaultValue = "5") int size,
-                        @RequestParam Map<String, String> searchParams) {
+                        @RequestParam Map<String, String> searchParams,
+                        @RequestParam(required = false) String sortField,
+                        @RequestParam(defaultValue = "asc") String sortDirection) {
         Pageable pageable = PageRequest.of(page - 1, size);
         Page<T> entityPage;
 
-        Map<String, Object> filters = new HashMap<>();
+        List<FilterConditionHelper> filters = new ArrayList<>();
+
+        Map<String, QueryOperator> allowedFields = getWhereFields();
+
         searchParams.forEach((key, value) -> {
-            if (value != null && !value.isEmpty() && getWhereFields().contains(key)) {
-                filters.put(key, value);
+            if (value != null && !value.isEmpty() && allowedFields.containsKey(key)) {
+                QueryOperator operator = allowedFields.get(key);
+                filters.add(new FilterConditionHelper(key, value, operator));
             }
         });
 
+        String finalSortField = (sortField != null && !sortField.isEmpty()) ? sortField : getSortField();
+        boolean ascending = (sortDirection != null) ? sortDirection.equalsIgnoreCase("asc") : isSortAscending();
+
         if (!filters.isEmpty()) {
-            entityPage = crudService.search(filters, pageable, getSelectableFields(), getWhereFields());
+            entityPage = crudService.search(pageable, filters, getSelectableFields(), getGroupByFields(), finalSortField, ascending);
         } else {
-            entityPage = crudService.getAllActiveData(getSelectableFields(),pageable);
+            entityPage = crudService.getAllActiveData(getSelectableFields(), pageable);
         }
 
         if (page > entityPage.getTotalPages() && entityPage.getTotalPages() > 1) {
@@ -117,6 +125,21 @@ public abstract class CrudController<T> {
         return "redirect:/" + getEntityPath() + "/list";
     }
 
+
+    private String extractFieldFromKey(String key) {
+        return key.split("__")[0]; // Extracts the field name from `age__gt`
+    }
+
+    private QueryOperator extractOperatorFromKey(String key) {
+        if (key.endsWith("__gt")) return QueryOperator.GREATER_THAN;
+        if (key.endsWith("__lt")) return QueryOperator.LESS_THAN;
+        if (key.endsWith("__gte")) return QueryOperator.GREATER_THAN_OR_EQUAL;
+        if (key.endsWith("__lte")) return QueryOperator.LESS_THAN_OR_EQUAL;
+        if (key.endsWith("__like")) return QueryOperator.LIKE;
+        if (key.endsWith("__neq")) return QueryOperator.NOT_EQUAL;
+        return QueryOperator.EQUAL; // Default
+    }
+
     // Abstract methods to define entity-specific paths and names
     protected abstract String getEntityPath();
     protected abstract String getViewPath();
@@ -124,5 +147,8 @@ public abstract class CrudController<T> {
     protected abstract T getNewEntity();
     protected abstract String getEntityNameLower();
     protected abstract List<String> getSelectableFields();
-    protected abstract List<String> getWhereFields();
+    protected abstract Map<String, QueryOperator> getWhereFields();
+    protected abstract List<String> getGroupByFields();
+    protected abstract String getSortField();
+    protected abstract boolean isSortAscending();
 }

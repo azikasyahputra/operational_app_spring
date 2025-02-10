@@ -1,5 +1,6 @@
 package com.demo.operational.controller;
 
+import com.demo.operational.enums.QueryOperator;
 import com.demo.operational.model.User;
 import com.demo.operational.service.UserService;
 import com.demo.operational.utils.PageHelper;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -76,7 +79,27 @@ public class UserController extends CrudController<User> {
     }
 
     @Override
-    protected List<String> getWhereFields() {
-        return Arrays.asList("username", "nama", "email", "role");
+    protected Map<String, QueryOperator> getWhereFields() {
+        Map<String, QueryOperator> fields = new HashMap<>();
+        fields.put("username", QueryOperator.LIKE);
+        fields.put("nama", QueryOperator.LIKE);
+        fields.put("email", QueryOperator.LIKE);
+        fields.put("role", QueryOperator.LIKE);
+        return fields;
     }
+
+    @Override
+    protected List<String> getGroupByFields() {
+        return List.of();
+    }
+
+    @Override
+    protected String getSortField(){
+        return "id";
+    };
+
+    @Override
+    protected boolean isSortAscending(){
+        return false;
+    };
 }

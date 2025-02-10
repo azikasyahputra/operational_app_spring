@@ -3,14 +3,12 @@ package com.demo.operational.service;
 import com.demo.operational.interfaces.CrudInterface;
 import com.demo.operational.repository.BaseRepository;
 import com.demo.operational.utils.EntityHelper;
+import com.demo.operational.utils.FilterConditionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class CrudService<T> implements CrudInterface<T> {
 
@@ -24,16 +22,8 @@ public abstract class CrudService<T> implements CrudInterface<T> {
     }
 
     @Override
-    public Page<T> search(Map<String, Object> filters, Pageable pageable, List<String> selectableFields, List<String> whereFields) {
-        // Ensure filters only apply to allowed `whereFields`
-        Map<String, Object> validFilters = new HashMap<>();
-        filters.forEach((key, value) -> {
-            if (whereFields.contains(key)) {  // Now using whereFields passed as argument
-                validFilters.put(key, value);
-            }
-        });
-
-        return repository.search(validFilters, pageable, selectableFields, whereFields);
+    public Page<T> search(Pageable pageable, List<FilterConditionHelper> filters, List<String> selectableFields, List<String> groupByFields, String sortField, boolean ascending) {
+        return repository.search(pageable, filters, selectableFields, groupByFields, sortField,ascending);
     }
 
     @Override

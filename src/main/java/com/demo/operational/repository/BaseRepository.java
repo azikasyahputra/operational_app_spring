@@ -11,16 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 @NoRepositoryBean
-public interface BaseRepository<T, ID> extends JpaRepository<T, ID> {
+public interface BaseRepository<T, ID> extends JpaRepository<T, ID>,FilterRepository<T> {
     @Query("SELECT t FROM #{#entityName} t WHERE t.deleted = :deleted")
     Page<T> findAllByDeleted(String deleted, Pageable pageable, List<String> fields);
 
 //    @Query("SELECT t FROM #{#entityName} t WHERE t.deleted = 'Tidak' " +
 //            "AND (:filters IS NULL OR " +
 //            "(KEY(:filters) IN :whereFields AND VALUE(:filters) = t))")
-    @Query("SELECT t FROM #{#entityName} t WHERE t.deleted = :deleted")
-    Page<T> search(@Param("filters") Map<String, Object> filters, Pageable pageable,
-                   @Param("fields") List<String> selectableFields,
-                   @Param("whereFields") List<String> whereFields);
-
+//    @Query("SELECT t FROM #{#entityName} t WHERE t.deleted = :deleted")
+//    Page<T> search(@Param("filters") Map<String, Object> filters, Pageable pageable,
+//                   @Param("fields") List<String> selectableFields,
+//                   @Param("whereFields") List<String> whereFields);
 }
